@@ -27,25 +27,30 @@ export const TrackList = (props: {tracks: TrackType[]}) => {
 
         setTracks(prevTracks => {
 
-            const formDate = Date.parse(dayjs(form.date).format('MM/DD/YYYY'));
-            const trackSameDate = prevTracks.filter(item => item.date === formDate);
-
-            if (trackSameDate.length) {
-                const tracksWithoutDate = prevTracks.filter(item => item.date !== formDate);
-                return [...tracksWithoutDate, {
-                    date: formDate,
-                    qty: Number(form.qty) + Number(trackSameDate[0].qty)
-                }].sort((a, b) => 
-                    a.date - b.date 
-                );
+            if (form.date === 0 || form.qty === 0) {
+                return prevTracks;
             }
             else {
-                return [...prevTracks, {
-                    date: formDate,
-                    qty: form.qty
-                }].sort((a, b) => 
-                    a.date - b.date 
-                );
+                const formDate = Date.parse(dayjs(form.date).format('MM/DD/YYYY'));            
+                const trackSameDate = prevTracks.filter(item => item.date === formDate);
+    
+                if (trackSameDate.length) {
+                    const tracksWithoutDate = prevTracks.filter(item => item.date !== formDate);
+                    return [...tracksWithoutDate, {
+                        date: formDate,
+                        qty: Number(form.qty) + Number(trackSameDate[0].qty)
+                    }].sort((a, b) => 
+                        a.date - b.date 
+                    );
+                }
+                else {
+                    return [...prevTracks, {
+                        date: formDate,
+                        qty: form.qty
+                    }].sort((a, b) => 
+                        a.date - b.date 
+                    );
+                }
             }
         });
     }

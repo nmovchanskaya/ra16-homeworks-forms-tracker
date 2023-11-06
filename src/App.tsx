@@ -1,4 +1,3 @@
-import { TrackItem } from './components/TrackItem';
 import { TrackList } from './components/TrackList';
 import './App.css';
 
