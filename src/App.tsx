@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import { TrackItem } from './components/TrackItem';
+import { TrackList } from './components/TrackList';
 import './App.css';
 
 function App() {
+
+  const items = [
+    {
+      date: 1699231038183,
+      qty: 5
+    },
+    {
+      date: 1699200038183,
+      qty: 10
+    }
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <TrackList tracks={items}/>
     </div>
   );
 }
